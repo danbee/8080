@@ -78,7 +78,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
 
         // 30
         0x30 => { print_mnemonic("*NOP", &input[counter..counter + 1]); size = 1 },
-        0x31 => { print_mnemonic("LXI", &input[counter..counter + 3]); size = 3 },
+        0x31 => { print_mnemonic("LXI  SP", &input[counter..counter + 3]); size = 3 },
         0x32 => { print_mnemonic("STA", &input[counter..counter + 3]); size = 3 },
         0x33 => { print_mnemonic("INX  SP", &input[counter..counter + 1]); size = 1 },
         0x34 => { print_mnemonic("INR  M", &input[counter..counter + 1]); size = 1 },
