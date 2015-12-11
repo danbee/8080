@@ -1,6 +1,6 @@
 use std::io::{self, Read};
 
-fn opcode(input: &Vec<u8>, counter: &usize) -> usize {
+fn opcode(input: &Vec<u8>, counter: usize) -> usize {
     let size: usize;
 
     let opcode = input[counter];
@@ -50,7 +50,7 @@ fn main() {
 
     while counter < input.len() {
         // get the instruction
-        oplength = opcode(&input, &counter);
+        oplength = opcode(&input, counter);
         counter += oplength;
     }
 }
