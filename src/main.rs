@@ -38,18 +38,12 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
 
         // 10
         0x10 => { print_mnemonic("*NOP", &input[counter..counter + 1]); size = 1 },
-        0x11 => {
-            println!("LXI  D,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
-            size = 3;
-        },
+        0x11 => { print_mnemonic("LXI  D", &input[counter..counter + 3]); size = 3 },
         0x12 => { print_mnemonic("STAX D", &input[counter..counter + 1]); size = 1 },
         0x13 => { print_mnemonic("INX  D", &input[counter..counter + 1]); size = 1 },
         0x14 => { print_mnemonic("INR  D", &input[counter..counter + 1]); size = 1 },
         0x15 => { print_mnemonic("DCR  D", &input[counter..counter + 1]); size = 1 },
-        0x16 => {
-            println!("MVI  D,#0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0x16 => { print_mnemonic("MVI  D", &input[counter..counter + 2]); size = 2 },
         0x17 => { print_mnemonic("RAL", &input[counter..counter + 1]); size = 1 },
 
         // 18
@@ -59,10 +53,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
         0x1b => { print_mnemonic("DCX  D", &input[counter..counter + 1]); size = 1 },
         0x1c => { print_mnemonic("INR  E", &input[counter..counter + 1]); size = 1 },
         0x1d => { print_mnemonic("DCR  E", &input[counter..counter + 1]); size = 1 },
-        0x1e => {
-            println!("MVI  E,#0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0x1e => { print_mnemonic("MVI  E", &input[counter..counter + 2]); size = 2 },
         0x1f => { print_mnemonic("RAR", &input[counter..counter + 1]); size = 1 },
 
         // 20
