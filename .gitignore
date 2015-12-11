@@ -17,3 +17,6 @@ Cargo.lock
 
 # Ignore the invaders roms
 invaders/
+
+# Ignore manuals
+manuals/
