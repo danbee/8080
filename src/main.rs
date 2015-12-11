@@ -22,57 +22,57 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("LXI  B,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0x02 => { println!("STAX B"); size = 1 },
-        0x03 => { println!("INX  B"); size = 1 },
-        0x04 => { println!("INR  B"); size = 1 },
-        0x05 => { println!("DCR  B"); size = 1 },
+        0x02 => { print_mneomonic("STAX B", $input[counter..counter + 1]); size = 1 }, },
+        0x03 => { print_mneomonic("INX  B", $input[counter..counter + 1]); size = 1 }, },
+        0x04 => { print_mneomonic("INR  B", $input[counter..counter + 1]); size = 1 }, },
+        0x05 => { print_mneomonic("DCR  B", $input[counter..counter + 1]); size = 1 }, },
         0x06 => { print_mnemonic("MVI B,", &input[counter..counter + 2]); size = 2; },
-        0x07 => { println!("RLC"); size = 1 },
+        0x07 => { print_mneomonic("RLC", $input[counter..counter + 1]); size = 1 }, },
 
         // 08
-        0x08 => { println!("*NOP"); size = 1 },
-        0x09 => { println!("DAD  B"); size = 1 },
-        0x0a => { println!("LDAX B"); size = 1 },
-        0x0b => { println!("DCX  B"); size = 1 },
-        0x0c => { println!("INR  C"); size = 1 },
-        0x0d => { println!("DCR  C"); size = 1 },
+        0x08 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
+        0x09 => { print_mneomonic("DAD  B", $input[counter..counter + 1]); size = 1 }, },
+        0x0a => { print_mneomonic("LDAX B", $input[counter..counter + 1]); size = 1 }, },
+        0x0b => { print_mneomonic("DCX  B", $input[counter..counter + 1]); size = 1 }, },
+        0x0c => { print_mneomonic("INR  C", $input[counter..counter + 1]); size = 1 }, },
+        0x0d => { print_mneomonic("DCR  C", $input[counter..counter + 1]); size = 1 }, },
         0x0e => {
             println!("MVI  C,#0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0x0f => { println!("RRC"); size = 1 },
+        0x0f => { print_mneomonic("RRC", $input[counter..counter + 1]); size = 1 }, },
 
         // 10
-        0x10 => { println!("*NOP"); size = 1 },
+        0x10 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
         0x11 => {
             println!("LXI  D,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0x12 => { println!("STAX D"); size = 1 },
-        0x13 => { println!("INX  D"); size = 1 },
-        0x14 => { println!("INR  D"); size = 1 },
-        0x15 => { println!("DCR  D"); size = 1 },
+        0x12 => { print_mneomonic("STAX D", $input[counter..counter + 1]); size = 1 }, },
+        0x13 => { print_mneomonic("INX  D", $input[counter..counter + 1]); size = 1 }, },
+        0x14 => { print_mneomonic("INR  D", $input[counter..counter + 1]); size = 1 }, },
+        0x15 => { print_mneomonic("DCR  D", $input[counter..counter + 1]); size = 1 }, },
         0x16 => {
             println!("MVI  D,#0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0x17 => { println!("RAL"); size = 1 },
+        0x17 => { print_mneomonic("RAL", $input[counter..counter + 1]); size = 1 }, },
 
         // 18
-        0x18 => { println!("*NOP"); size = 1 },
-        0x19 => { println!("DAD  D"); size = 1 },
-        0x1a => { println!("LDAX D"); size = 1 },
-        0x1b => { println!("DCX  D"); size = 1 },
-        0x1c => { println!("INR  E"); size = 1 },
-        0x1d => { println!("DCR  E"); size = 1 },
+        0x18 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
+        0x19 => { print_mneomonic("DAD  D", $input[counter..counter + 1]); size = 1 }, },
+        0x1a => { print_mneomonic("LDAX D", $input[counter..counter + 1]); size = 1 }, },
+        0x1b => { print_mneomonic("DCX  D", $input[counter..counter + 1]); size = 1 }, },
+        0x1c => { print_mneomonic("INR  E", $input[counter..counter + 1]); size = 1 }, },
+        0x1d => { print_mneomonic("DCR  E", $input[counter..counter + 1]); size = 1 }, },
         0x1e => {
             println!("MVI  E,#0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0x1f => { println!("RAR"); size = 1 },
+        0x1f => { print_mneomonic("RAR", $input[counter..counter + 1]); size = 1 }, },
 
         // 20
-        0x20 => { println!("*NOP"); size = 1 },
+        0x20 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
         0x21 => {
             println!("LXI  H,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -81,33 +81,33 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("SHLD ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0x23 => { println!("INX  H"); size = 1 },
-        0x24 => { println!("INR  H"); size = 1 },
-        0x25 => { println!("DCR  H"); size = 1 },
+        0x23 => { print_mneomonic("INX  H", $input[counter..counter + 1]); size = 1 }, },
+        0x24 => { print_mneomonic("INR  H", $input[counter..counter + 1]); size = 1 }, },
+        0x25 => { print_mneomonic("DCR  H", $input[counter..counter + 1]); size = 1 }, },
         0x26 => {
             println!("MVI  H,#0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0x27 => { println!("DDA"); size = 1 },
+        0x27 => { print_mneomonic("DDA", $input[counter..counter + 1]); size = 1 }, },
 
         // 28
-        0x28 => { println!("*NOP"); size = 1 },
-        0x29 => { println!("DAD  H"); size = 1 },
+        0x28 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
+        0x29 => { print_mneomonic("DAD  H", $input[counter..counter + 1]); size = 1 }, },
         0x2a => {
             println!("LHLD ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0x2b => { println!("DCX  H"); size = 1 },
-        0x2c => { println!("INR  L"); size = 1 },
-        0x2d => { println!("DCR  L"); size = 1 },
+        0x2b => { print_mneomonic("DCX  H", $input[counter..counter + 1]); size = 1 }, },
+        0x2c => { print_mneomonic("INR  L", $input[counter..counter + 1]); size = 1 }, },
+        0x2d => { print_mneomonic("DCR  L", $input[counter..counter + 1]); size = 1 }, },
         0x2e => {
             println!("MVI  L,#0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0x2f => { println!("CMA"); size = 1 },
+        0x2f => { print_mneomonic("CMA", $input[counter..counter + 1]); size = 1 }, },
 
         // 30
-        0x30 => { println!("*NOP"); size = 1 },
+        0x30 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
         0x31 => {
             println!("LXI  SP,${:03x}{:03x}", input[counter + 3], input[counter + 1]);
             size = 3;
@@ -116,194 +116,194 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("STA  ${:03x}{:03x}", input[counter + 3], input[counter + 1]);
             size = 3;
         },
-        0x33 => { println!("INX  SP"); size = 1 },
-        0x34 => { println!("INR  M"); size = 1 },
-        0x35 => { println!("DCR  M"); size = 1 },
+        0x33 => { print_mneomonic("INX  SP", $input[counter..counter + 1]); size = 1 }, },
+        0x34 => { print_mneomonic("INR  M", $input[counter..counter + 1]); size = 1 }, },
+        0x35 => { print_mneomonic("DCR  M", $input[counter..counter + 1]); size = 1 }, },
         0x36 => {
             println!("MVI  M,#0x{:03x}", input[counter + 1]);
             size = 3;
         },
-        0x37 => { println!("STC"); size = 1 },
+        0x37 => { print_mneomonic("STC", $input[counter..counter + 1]); size = 1 }, },
 
         // 38
-        0x38 => { println!("*NOP"); size = 1 },
-        0x39 => { println!("DAD  SP"); size = 1 },
+        0x38 => { print_mneomonic("*NOP", $input[counter..counter + 1]); size = 1 }, },
+        0x39 => { print_mneomonic("DAD  SP", $input[counter..counter + 1]); size = 1 }, },
         0x3a => {
             println!("LDA  ${:03x}{:03x}", input[counter + 3], input[counter + 1]);
             size = 3;
         },
-        0x3b => { println!("DCX  SP"); size = 1 },
-        0x3c => { println!("INR  A"); size = 1 },
-        0x3d => { println!("DCR  A"); size = 1 },
+        0x3b => { print_mneomonic("DCX  SP", $input[counter..counter + 1]); size = 1 }, },
+        0x3c => { print_mneomonic("INR  A", $input[counter..counter + 1]); size = 1 }, },
+        0x3d => { print_mneomonic("DCR  A", $input[counter..counter + 1]); size = 1 }, },
         0x3e => {
             println!("MVI  A,#0x{:03x}", input[counter + 1]);
             size = 3;
         },
-        0x3f => { println!("CMC"); size = 1 },
+        0x3f => { print_mneomonic("CMC", $input[counter..counter + 1]); size = 1 }, },
 
         // 40
-        0x40 => { println!("MOV  B,B"); size = 1 },
-        0x41 => { println!("MOV  B,C"); size = 1 },
-        0x42 => { println!("MOV  B,D"); size = 1 },
-        0x43 => { println!("MOV  B,E"); size = 1 },
-        0x44 => { println!("MOV  B,H"); size = 1 },
-        0x45 => { println!("MOV  B,L"); size = 1 },
-        0x46 => { println!("MOV  B,M"); size = 1 },
-        0x47 => { println!("MOV  B,A"); size = 1 },
+        0x40 => { print_mneomonic("MOV  B,B", $input[counter..counter + 1]); size = 1 }, },
+        0x41 => { print_mneomonic("MOV  B,C", $input[counter..counter + 1]); size = 1 }, },
+        0x42 => { print_mneomonic("MOV  B,D", $input[counter..counter + 1]); size = 1 }, },
+        0x43 => { print_mneomonic("MOV  B,E", $input[counter..counter + 1]); size = 1 }, },
+        0x44 => { print_mneomonic("MOV  B,H", $input[counter..counter + 1]); size = 1 }, },
+        0x45 => { print_mneomonic("MOV  B,L", $input[counter..counter + 1]); size = 1 }, },
+        0x46 => { print_mneomonic("MOV  B,M", $input[counter..counter + 1]); size = 1 }, },
+        0x47 => { print_mneomonic("MOV  B,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 48
-        0x48 => { println!("MOV  C,B"); size = 1 },
-        0x49 => { println!("MOV  C,C"); size = 1 },
-        0x4a => { println!("MOV  C,D"); size = 1 },
-        0x4b => { println!("MOV  C,E"); size = 1 },
-        0x4c => { println!("MOV  C,H"); size = 1 },
-        0x4d => { println!("MOV  C,L"); size = 1 },
-        0x4e => { println!("MOV  C,M"); size = 1 },
-        0x4f => { println!("MOV  C,A"); size = 1 },
+        0x48 => { print_mneomonic("MOV  C,B", $input[counter..counter + 1]); size = 1 }, },
+        0x49 => { print_mneomonic("MOV  C,C", $input[counter..counter + 1]); size = 1 }, },
+        0x4a => { print_mneomonic("MOV  C,D", $input[counter..counter + 1]); size = 1 }, },
+        0x4b => { print_mneomonic("MOV  C,E", $input[counter..counter + 1]); size = 1 }, },
+        0x4c => { print_mneomonic("MOV  C,H", $input[counter..counter + 1]); size = 1 }, },
+        0x4d => { print_mneomonic("MOV  C,L", $input[counter..counter + 1]); size = 1 }, },
+        0x4e => { print_mneomonic("MOV  C,M", $input[counter..counter + 1]); size = 1 }, },
+        0x4f => { print_mneomonic("MOV  C,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 50
-        0x50 => { println!("MOV  D,B"); size = 1 },
-        0x51 => { println!("MOV  D,C"); size = 1 },
-        0x52 => { println!("MOV  D,D"); size = 1 },
-        0x53 => { println!("MOV  D,E"); size = 1 },
-        0x54 => { println!("MOV  D,H"); size = 1 },
-        0x55 => { println!("MOV  D,L"); size = 1 },
-        0x56 => { println!("MOV  D,M"); size = 1 },
-        0x57 => { println!("MOV  D,A"); size = 1 },
+        0x50 => { print_mneomonic("MOV  D,B", $input[counter..counter + 1]); size = 1 }, },
+        0x51 => { print_mneomonic("MOV  D,C", $input[counter..counter + 1]); size = 1 }, },
+        0x52 => { print_mneomonic("MOV  D,D", $input[counter..counter + 1]); size = 1 }, },
+        0x53 => { print_mneomonic("MOV  D,E", $input[counter..counter + 1]); size = 1 }, },
+        0x54 => { print_mneomonic("MOV  D,H", $input[counter..counter + 1]); size = 1 }, },
+        0x55 => { print_mneomonic("MOV  D,L", $input[counter..counter + 1]); size = 1 }, },
+        0x56 => { print_mneomonic("MOV  D,M", $input[counter..counter + 1]); size = 1 }, },
+        0x57 => { print_mneomonic("MOV  D,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 58
-        0x58 => { println!("MOV  E,B"); size = 1 },
-        0x59 => { println!("MOV  E,C"); size = 1 },
-        0x5a => { println!("MOV  E,D"); size = 1 },
-        0x5b => { println!("MOV  E,E"); size = 1 },
-        0x5c => { println!("MOV  E,H"); size = 1 },
-        0x5d => { println!("MOV  E,L"); size = 1 },
-        0x5e => { println!("MOV  E,M"); size = 1 },
-        0x5f => { println!("MOV  E,A"); size = 1 },
+        0x58 => { print_mneomonic("MOV  E,B", $input[counter..counter + 1]); size = 1 }, },
+        0x59 => { print_mneomonic("MOV  E,C", $input[counter..counter + 1]); size = 1 }, },
+        0x5a => { print_mneomonic("MOV  E,D", $input[counter..counter + 1]); size = 1 }, },
+        0x5b => { print_mneomonic("MOV  E,E", $input[counter..counter + 1]); size = 1 }, },
+        0x5c => { print_mneomonic("MOV  E,H", $input[counter..counter + 1]); size = 1 }, },
+        0x5d => { print_mneomonic("MOV  E,L", $input[counter..counter + 1]); size = 1 }, },
+        0x5e => { print_mneomonic("MOV  E,M", $input[counter..counter + 1]); size = 1 }, },
+        0x5f => { print_mneomonic("MOV  E,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 60
-        0x60 => { println!("MOV  H,B"); size = 1 },
-        0x61 => { println!("MOV  H,C"); size = 1 },
-        0x62 => { println!("MOV  H,D"); size = 1 },
-        0x63 => { println!("MOV  H,E"); size = 1 },
-        0x64 => { println!("MOV  H,H"); size = 1 },
-        0x65 => { println!("MOV  H,L"); size = 1 },
-        0x66 => { println!("MOV  H,M"); size = 1 },
-        0x67 => { println!("MOV  H,A"); size = 1 },
+        0x60 => { print_mneomonic("MOV  H,B", $input[counter..counter + 1]); size = 1 }, },
+        0x61 => { print_mneomonic("MOV  H,C", $input[counter..counter + 1]); size = 1 }, },
+        0x62 => { print_mneomonic("MOV  H,D", $input[counter..counter + 1]); size = 1 }, },
+        0x63 => { print_mneomonic("MOV  H,E", $input[counter..counter + 1]); size = 1 }, },
+        0x64 => { print_mneomonic("MOV  H,H", $input[counter..counter + 1]); size = 1 }, },
+        0x65 => { print_mneomonic("MOV  H,L", $input[counter..counter + 1]); size = 1 }, },
+        0x66 => { print_mneomonic("MOV  H,M", $input[counter..counter + 1]); size = 1 }, },
+        0x67 => { print_mneomonic("MOV  H,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 68
-        0x68 => { println!("MOV  L,B"); size = 1 },
-        0x69 => { println!("MOV  L,C"); size = 1 },
-        0x6a => { println!("MOV  L,D"); size = 1 },
-        0x6b => { println!("MOV  L,E"); size = 1 },
-        0x6c => { println!("MOV  L,H"); size = 1 },
-        0x6d => { println!("MOV  L,L"); size = 1 },
-        0x6e => { println!("MOV  L,M"); size = 1 },
-        0x6f => { println!("MOV  L,A"); size = 1 },
+        0x68 => { print_mneomonic("MOV  L,B", $input[counter..counter + 1]); size = 1 }, },
+        0x69 => { print_mneomonic("MOV  L,C", $input[counter..counter + 1]); size = 1 }, },
+        0x6a => { print_mneomonic("MOV  L,D", $input[counter..counter + 1]); size = 1 }, },
+        0x6b => { print_mneomonic("MOV  L,E", $input[counter..counter + 1]); size = 1 }, },
+        0x6c => { print_mneomonic("MOV  L,H", $input[counter..counter + 1]); size = 1 }, },
+        0x6d => { print_mneomonic("MOV  L,L", $input[counter..counter + 1]); size = 1 }, },
+        0x6e => { print_mneomonic("MOV  L,M", $input[counter..counter + 1]); size = 1 }, },
+        0x6f => { print_mneomonic("MOV  L,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 70
-        0x70 => { println!("MOV  M,B"); size = 1 },
-        0x71 => { println!("MOV  M,C"); size = 1 },
-        0x72 => { println!("MOV  M,D"); size = 1 },
-        0x73 => { println!("MOV  M,E"); size = 1 },
-        0x74 => { println!("MOV  M,H"); size = 1 },
-        0x75 => { println!("MOV  M,L"); size = 1 },
-        0x76 => { println!("HLT"); size = 1 },
-        0x77 => { println!("MOV  M,A"); size = 1 },
+        0x70 => { print_mneomonic("MOV  M,B", $input[counter..counter + 1]); size = 1 }, },
+        0x71 => { print_mneomonic("MOV  M,C", $input[counter..counter + 1]); size = 1 }, },
+        0x72 => { print_mneomonic("MOV  M,D", $input[counter..counter + 1]); size = 1 }, },
+        0x73 => { print_mneomonic("MOV  M,E", $input[counter..counter + 1]); size = 1 }, },
+        0x74 => { print_mneomonic("MOV  M,H", $input[counter..counter + 1]); size = 1 }, },
+        0x75 => { print_mneomonic("MOV  M,L", $input[counter..counter + 1]); size = 1 }, },
+        0x76 => { print_mneomonic("HLT", $input[counter..counter + 1]); size = 1 }, },
+        0x77 => { print_mneomonic("MOV  M,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 78
-        0x78 => { println!("MOV  A,B"); size = 1 },
-        0x79 => { println!("MOV  A,C"); size = 1 },
-        0x7a => { println!("MOV  A,D"); size = 1 },
-        0x7b => { println!("MOV  A,E"); size = 1 },
-        0x7c => { println!("MOV  A,H"); size = 1 },
-        0x7d => { println!("MOV  A,L"); size = 1 },
-        0x7e => { println!("MOV  A,M"); size = 1 },
-        0x7f => { println!("MOV  A,A"); size = 1 },
+        0x78 => { print_mneomonic("MOV  A,B", $input[counter..counter + 1]); size = 1 }, },
+        0x79 => { print_mneomonic("MOV  A,C", $input[counter..counter + 1]); size = 1 }, },
+        0x7a => { print_mneomonic("MOV  A,D", $input[counter..counter + 1]); size = 1 }, },
+        0x7b => { print_mneomonic("MOV  A,E", $input[counter..counter + 1]); size = 1 }, },
+        0x7c => { print_mneomonic("MOV  A,H", $input[counter..counter + 1]); size = 1 }, },
+        0x7d => { print_mneomonic("MOV  A,L", $input[counter..counter + 1]); size = 1 }, },
+        0x7e => { print_mneomonic("MOV  A,M", $input[counter..counter + 1]); size = 1 }, },
+        0x7f => { print_mneomonic("MOV  A,A", $input[counter..counter + 1]); size = 1 }, },
 
         // 80
-        0x80 => { println!("ADD  B"); size = 1 },
-        0x81 => { println!("ADD  C"); size = 1 },
-        0x82 => { println!("ADD  D"); size = 1 },
-        0x83 => { println!("ADD  E"); size = 1 },
-        0x84 => { println!("ADD  H"); size = 1 },
-        0x85 => { println!("ADD  L"); size = 1 },
-        0x86 => { println!("ADD  M"); size = 1 },
-        0x87 => { println!("ADD  A"); size = 1 },
+        0x80 => { print_mneomonic("ADD  B", $input[counter..counter + 1]); size = 1 }, },
+        0x81 => { print_mneomonic("ADD  C", $input[counter..counter + 1]); size = 1 }, },
+        0x82 => { print_mneomonic("ADD  D", $input[counter..counter + 1]); size = 1 }, },
+        0x83 => { print_mneomonic("ADD  E", $input[counter..counter + 1]); size = 1 }, },
+        0x84 => { print_mneomonic("ADD  H", $input[counter..counter + 1]); size = 1 }, },
+        0x85 => { print_mneomonic("ADD  L", $input[counter..counter + 1]); size = 1 }, },
+        0x86 => { print_mneomonic("ADD  M", $input[counter..counter + 1]); size = 1 }, },
+        0x87 => { print_mneomonic("ADD  A", $input[counter..counter + 1]); size = 1 }, },
 
         // 88
-        0x88 => { println!("ADC  B"); size = 1 },
-        0x89 => { println!("ADC  C"); size = 1 },
-        0x8a => { println!("ADC  D"); size = 1 },
-        0x8b => { println!("ADC  E"); size = 1 },
-        0x8c => { println!("ADC  H"); size = 1 },
-        0x8d => { println!("ADC  L"); size = 1 },
-        0x8e => { println!("ADC  M"); size = 1 },
-        0x8f => { println!("ADC  A"); size = 1 },
+        0x88 => { print_mneomonic("ADC  B", $input[counter..counter + 1]); size = 1 }, },
+        0x89 => { print_mneomonic("ADC  C", $input[counter..counter + 1]); size = 1 }, },
+        0x8a => { print_mneomonic("ADC  D", $input[counter..counter + 1]); size = 1 }, },
+        0x8b => { print_mneomonic("ADC  E", $input[counter..counter + 1]); size = 1 }, },
+        0x8c => { print_mneomonic("ADC  H", $input[counter..counter + 1]); size = 1 }, },
+        0x8d => { print_mneomonic("ADC  L", $input[counter..counter + 1]); size = 1 }, },
+        0x8e => { print_mneomonic("ADC  M", $input[counter..counter + 1]); size = 1 }, },
+        0x8f => { print_mneomonic("ADC  A", $input[counter..counter + 1]); size = 1 }, },
 
         // 90
-        0x90 => { println!("SUB  B"); size = 1 },
-        0x91 => { println!("SUB  C"); size = 1 },
-        0x92 => { println!("SUB  D"); size = 1 },
-        0x93 => { println!("SUB  E"); size = 1 },
-        0x94 => { println!("SUB  H"); size = 1 },
-        0x95 => { println!("SUB  L"); size = 1 },
-        0x96 => { println!("SUB  M"); size = 1 },
-        0x97 => { println!("SUB  A"); size = 1 },
+        0x90 => { print_mneomonic("SUB  B", $input[counter..counter + 1]); size = 1 }, },
+        0x91 => { print_mneomonic("SUB  C", $input[counter..counter + 1]); size = 1 }, },
+        0x92 => { print_mneomonic("SUB  D", $input[counter..counter + 1]); size = 1 }, },
+        0x93 => { print_mneomonic("SUB  E", $input[counter..counter + 1]); size = 1 }, },
+        0x94 => { print_mneomonic("SUB  H", $input[counter..counter + 1]); size = 1 }, },
+        0x95 => { print_mneomonic("SUB  L", $input[counter..counter + 1]); size = 1 }, },
+        0x96 => { print_mneomonic("SUB  M", $input[counter..counter + 1]); size = 1 }, },
+        0x97 => { print_mneomonic("SUB  A", $input[counter..counter + 1]); size = 1 }, },
 
         // 98
-        0x98 => { println!("SBB  B"); size = 1 },
-        0x99 => { println!("SBB  C"); size = 1 },
-        0x9a => { println!("SBB  D"); size = 1 },
-        0x9b => { println!("SBB  E"); size = 1 },
-        0x9c => { println!("SBB  H"); size = 1 },
-        0x9d => { println!("SBB  L"); size = 1 },
-        0x9e => { println!("SBB  M"); size = 1 },
-        0x9f => { println!("SBB  A"); size = 1 },
+        0x98 => { print_mneomonic("SBB  B", $input[counter..counter + 1]); size = 1 }, },
+        0x99 => { print_mneomonic("SBB  C", $input[counter..counter + 1]); size = 1 }, },
+        0x9a => { print_mneomonic("SBB  D", $input[counter..counter + 1]); size = 1 }, },
+        0x9b => { print_mneomonic("SBB  E", $input[counter..counter + 1]); size = 1 }, },
+        0x9c => { print_mneomonic("SBB  H", $input[counter..counter + 1]); size = 1 }, },
+        0x9d => { print_mneomonic("SBB  L", $input[counter..counter + 1]); size = 1 }, },
+        0x9e => { print_mneomonic("SBB  M", $input[counter..counter + 1]); size = 1 }, },
+        0x9f => { print_mneomonic("SBB  A", $input[counter..counter + 1]); size = 1 }, },
 
         // a0
-        0xa0 => { println!("ANA  B"); size = 1 },
-        0xa1 => { println!("ANA  C"); size = 1 },
-        0xa2 => { println!("ANA  D"); size = 1 },
-        0xa3 => { println!("ANA  E"); size = 1 },
-        0xa4 => { println!("ANA  H"); size = 1 },
-        0xa5 => { println!("ANA  L"); size = 1 },
-        0xa6 => { println!("ANA  M"); size = 1 },
-        0xa7 => { println!("ANA  A"); size = 1 },
+        0xa0 => { print_mneomonic("ANA  B", $input[counter..counter + 1]); size = 1 }, },
+        0xa1 => { print_mneomonic("ANA  C", $input[counter..counter + 1]); size = 1 }, },
+        0xa2 => { print_mneomonic("ANA  D", $input[counter..counter + 1]); size = 1 }, },
+        0xa3 => { print_mneomonic("ANA  E", $input[counter..counter + 1]); size = 1 }, },
+        0xa4 => { print_mneomonic("ANA  H", $input[counter..counter + 1]); size = 1 }, },
+        0xa5 => { print_mneomonic("ANA  L", $input[counter..counter + 1]); size = 1 }, },
+        0xa6 => { print_mneomonic("ANA  M", $input[counter..counter + 1]); size = 1 }, },
+        0xa7 => { print_mneomonic("ANA  A", $input[counter..counter + 1]); size = 1 }, },
 
         // a8
-        0xa8 => { println!("XRA  B"); size = 1 },
-        0xa9 => { println!("XRA  C"); size = 1 },
-        0xaa => { println!("XRA  D"); size = 1 },
-        0xab => { println!("XRA  E"); size = 1 },
-        0xac => { println!("XRA  H"); size = 1 },
-        0xad => { println!("XRA  L"); size = 1 },
-        0xae => { println!("XRA  M"); size = 1 },
-        0xaf => { println!("XRA  A"); size = 1 },
+        0xa8 => { print_mneomonic("XRA  B", $input[counter..counter + 1]); size = 1 }, },
+        0xa9 => { print_mneomonic("XRA  C", $input[counter..counter + 1]); size = 1 }, },
+        0xaa => { print_mneomonic("XRA  D", $input[counter..counter + 1]); size = 1 }, },
+        0xab => { print_mneomonic("XRA  E", $input[counter..counter + 1]); size = 1 }, },
+        0xac => { print_mneomonic("XRA  H", $input[counter..counter + 1]); size = 1 }, },
+        0xad => { print_mneomonic("XRA  L", $input[counter..counter + 1]); size = 1 }, },
+        0xae => { print_mneomonic("XRA  M", $input[counter..counter + 1]); size = 1 }, },
+        0xaf => { print_mneomonic("XRA  A", $input[counter..counter + 1]); size = 1 }, },
 
         // b0
-        0xb0 => { println!("ORA  B"); size = 1 },
-        0xb1 => { println!("ORA  C"); size = 1 },
-        0xb2 => { println!("ORA  D"); size = 1 },
-        0xb3 => { println!("ORA  E"); size = 1 },
-        0xb4 => { println!("ORA  H"); size = 1 },
-        0xb5 => { println!("ORA  L"); size = 1 },
-        0xb6 => { println!("ORA  M"); size = 1 },
-        0xb7 => { println!("ORA  A"); size = 1 },
+        0xb0 => { print_mneomonic("ORA  B", $input[counter..counter + 1]); size = 1 }, },
+        0xb1 => { print_mneomonic("ORA  C", $input[counter..counter + 1]); size = 1 }, },
+        0xb2 => { print_mneomonic("ORA  D", $input[counter..counter + 1]); size = 1 }, },
+        0xb3 => { print_mneomonic("ORA  E", $input[counter..counter + 1]); size = 1 }, },
+        0xb4 => { print_mneomonic("ORA  H", $input[counter..counter + 1]); size = 1 }, },
+        0xb5 => { print_mneomonic("ORA  L", $input[counter..counter + 1]); size = 1 }, },
+        0xb6 => { print_mneomonic("ORA  M", $input[counter..counter + 1]); size = 1 }, },
+        0xb7 => { print_mneomonic("ORA  A", $input[counter..counter + 1]); size = 1 }, },
 
         // b8
-        0xb8 => { println!("CMP  B"); size = 1 },
-        0xb9 => { println!("CMP  C"); size = 1 },
-        0xba => { println!("CMP  D"); size = 1 },
-        0xbb => { println!("CMP  E"); size = 1 },
-        0xbc => { println!("CMP  H"); size = 1 },
-        0xbd => { println!("CMP  L"); size = 1 },
-        0xbe => { println!("CMP  M"); size = 1 },
-        0xbf => { println!("CMP  A"); size = 1 },
+        0xb8 => { print_mneomonic("CMP  B", $input[counter..counter + 1]); size = 1 }, },
+        0xb9 => { print_mneomonic("CMP  C", $input[counter..counter + 1]); size = 1 }, },
+        0xba => { print_mneomonic("CMP  D", $input[counter..counter + 1]); size = 1 }, },
+        0xbb => { print_mneomonic("CMP  E", $input[counter..counter + 1]); size = 1 }, },
+        0xbc => { print_mneomonic("CMP  H", $input[counter..counter + 1]); size = 1 }, },
+        0xbd => { print_mneomonic("CMP  L", $input[counter..counter + 1]); size = 1 }, },
+        0xbe => { print_mneomonic("CMP  M", $input[counter..counter + 1]); size = 1 }, },
+        0xbf => { print_mneomonic("CMP  A", $input[counter..counter + 1]); size = 1 }, },
 
         // c0
-        0xc0 => { println!("RNZ"); size = 1 },
-        0xc1 => { println!("POP  B"); size = 1 },
+        0xc0 => { print_mneomonic("RNZ", $input[counter..counter + 1]); size = 1 }, },
+        0xc1 => { print_mneomonic("POP  B", $input[counter..counter + 1]); size = 1 }, },
         0xc2 => {
             println!("JNZ  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -313,16 +313,16 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("CNZ  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xc5 => { println!("PUSH B"); size = 1 },
+        0xc5 => { print_mneomonic("PUSH B", $input[counter..counter + 1]); size = 1 }, },
         0xc6 => {
             println!("ADI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xc7 => { println!("RST  0"); size = 1 },
+        0xc7 => { print_mneomonic("RST  0", $input[counter..counter + 1]); size = 1 }, },
 
         // c8
-        0xc8 => { println!("RZ"); size = 1 },
-        0xc9 => { println!("RET"); size = 1 },
+        0xc8 => { print_mneomonic("RZ", $input[counter..counter + 1]); size = 1 }, },
+        0xc9 => { print_mneomonic("RET", $input[counter..counter + 1]); size = 1 }, },
         0xca => {
             println!("JZ   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -343,11 +343,11 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("ACI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xcf => { println!("RST  1"); size = 1 },
+        0xcf => { print_mneomonic("RST  1", $input[counter..counter + 1]); size = 1 }, },
 
         // d0
-        0xd0 => { println!("RNC"); size = 1 },
-        0xd1 => { println!("POP  D"); size = 1 },
+        0xd0 => { print_mneomonic("RNC", $input[counter..counter + 1]); size = 1 }, },
+        0xd1 => { print_mneomonic("POP  D", $input[counter..counter + 1]); size = 1 }, },
         0xd2 => {
             println!("JNC  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -360,16 +360,16 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("CNC  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xd5 => { println!("PUSH D"); size = 1 },
+        0xd5 => { print_mneomonic("PUSH D", $input[counter..counter + 1]); size = 1 }, },
         0xd6 => {
             println!("SUI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xd7 => { println!("RST  2"); size = 1 },
+        0xd7 => { print_mneomonic("RST  2", $input[counter..counter + 1]); size = 1 }, },
 
         // d8
-        0xd8 => { println!("RC"); size = 1 },
-        0xd9 => { println!("*RET"); size = 1 },
+        0xd8 => { print_mneomonic("RC", $input[counter..counter + 1]); size = 1 }, },
+        0xd9 => { print_mneomonic("*RET", $input[counter..counter + 1]); size = 1 }, },
         0xda => {
             println!("JC   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -390,35 +390,35 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("SBI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xdf => { println!("RST  3"); size = 1 },
+        0xdf => { print_mneomonic("RST  3", $input[counter..counter + 1]); size = 1 }, },
 
         // e0
-        0xe0 => { println!("RPO"); size = 1 },
-        0xe1 => { println!("POP  H"); size = 1 },
+        0xe0 => { print_mneomonic("RPO", $input[counter..counter + 1]); size = 1 }, },
+        0xe1 => { print_mneomonic("POP  H", $input[counter..counter + 1]); size = 1 }, },
         0xe2 => {
             println!("JPO  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xe3 => { println!("XTHL"); size = 1 },
+        0xe3 => { print_mneomonic("XTHL", $input[counter..counter + 1]); size = 1 }, },
         0xe4 => {
             println!("CPO  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xe5 => { println!("PUSH H"); size = 1 },
+        0xe5 => { print_mneomonic("PUSH H", $input[counter..counter + 1]); size = 1 }, },
         0xe6 => {
             println!("ANI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xe7 => { println!("RST  4"); size = 1 },
+        0xe7 => { print_mneomonic("RST  4", $input[counter..counter + 1]); size = 1 }, },
 
         // e8
-        0xe8 => { println!("RPE"); size = 1 },
-        0xe9 => { println!("PCHL"); size = 1 },
+        0xe8 => { print_mneomonic("RPE", $input[counter..counter + 1]); size = 1 }, },
+        0xe9 => { print_mneomonic("PCHL", $input[counter..counter + 1]); size = 1 }, },
         0xea => {
             println!("JPE  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xeb => { println!("XCHG"); size = 1 },
+        0xeb => { print_mneomonic("XCHG", $input[counter..counter + 1]); size = 1 }, },
         0xec => {
             println!("CPE  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -431,35 +431,35 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("XRI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xef => { println!("RST  5"); size = 1 },
+        0xef => { print_mneomonic("RST  5", $input[counter..counter + 1]); size = 1 }, },
 
         // f0
-        0xf0 => { println!("RP"); size = 1 },
-        0xf1 => { println!("POP  PSW"); size = 1 },
+        0xf0 => { print_mneomonic("RP", $input[counter..counter + 1]); size = 1 }, },
+        0xf1 => { print_mneomonic("POP  PSW", $input[counter..counter + 1]); size = 1 }, },
         0xf2 => {
             println!("JP   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xf3 => { println!("DI"); size = 1 },
+        0xf3 => { print_mneomonic("DI", $input[counter..counter + 1]); size = 1 }, },
         0xf4 => {
             println!("CP   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xf5 => { println!("PUSH PSW"); size = 1 },
+        0xf5 => { print_mneomonic("PUSH PSW", $input[counter..counter + 1]); size = 1 }, },
         0xf6 => {
             println!("ORI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xf7 => { println!("RST  6"); size = 1 },
+        0xf7 => { print_mneomonic("RST  6", $input[counter..counter + 1]); size = 1 }, },
 
         // f8
-        0xf8 => { println!("RM"); size = 1 },
-        0xf9 => { println!("SPHL"); size = 1 },
+        0xf8 => { print_mneomonic("RM", $input[counter..counter + 1]); size = 1 }, },
+        0xf9 => { print_mneomonic("SPHL", $input[counter..counter + 1]); size = 1 }, },
         0xfa => {
             println!("JM   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xfb => { println!("EI"); size = 1 },
+        0xfb => { print_mneomonic("EI", $input[counter..counter + 1]); size = 1 }, },
         0xfc => {
             println!("CM   ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -472,7 +472,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("CPI  #0x{:02x}", input[counter + 1]);
             size = 2;
         },
-        0xff => { println!("RST  7"); size = 1 },
+        0xff => { print_mneomonic("RST  7", $input[counter..counter + 1]); size = 1 }, },
 
         _  => { println!("-    {:02x}", opcode); size = 1 },
     }
