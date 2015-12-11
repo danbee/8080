@@ -273,20 +273,14 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
         0xcb => { print_mnemonic("*JMP", &input[counter..counter + 3]); size = 3 },
         0xcc => { print_mnemonic("CZ", &input[counter..counter + 3]); size = 3 },
         0xcd => { print_mnemonic("CALL", &input[counter..counter + 3]); size = 3 },
-        0xce => {
-            println!("ACI  #0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0xce => { print_mnemonic("ACI", &input[counter..counter + 2]); size = 2 },
         0xcf => { print_mnemonic("RST  1", &input[counter..counter + 1]); size = 1 },
 
         // d0
         0xd0 => { print_mnemonic("RNC", &input[counter..counter + 1]); size = 1 },
         0xd1 => { print_mnemonic("POP  D", &input[counter..counter + 1]); size = 1 },
         0xd2 => { print_mnemonic("JNC", &input[counter..counter + 3]); size = 3 },
-        0xd3 => {
-            println!("OUT  #0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0xd3 => { print_mnemonic("OUT", &input[counter..counter + 2]); size = 2 },
         0xd4 => { print_mnemonic("CNC", &input[counter..counter + 3]); size = 3 },
         0xd5 => { print_mnemonic("PUSH D", &input[counter..counter + 1]); size = 1 },
         0xd6 => { print_mnemonic("SUI", &input[counter..counter + 2]); size = 2 },
@@ -296,16 +290,10 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
         0xd8 => { print_mnemonic("RC", &input[counter..counter + 1]); size = 1 },
         0xd9 => { print_mnemonic("*RET", &input[counter..counter + 1]); size = 1 },
         0xda => { print_mnemonic("JC", &input[counter..counter + 3]); size = 3 },
-        0xdb => {
-            println!("IN   #0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0xdb => { print_mnemonic("*NOP", &input[counter..counter + 2]); size = 2 },
         0xdc => { print_mnemonic("CC", &input[counter..counter + 3]); size = 3 },
         0xdd => { print_mnemonic("*CALL", &input[counter..counter + 3]); size = 3 },
-        0xde => {
-            println!("SBI  #0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0xde => { print_mnemonic("SBI", &input[counter..counter + 2]); size = 2 },
         0xdf => { print_mnemonic("RST  3", &input[counter..counter + 1]); size = 1 },
 
         // e0
@@ -325,10 +313,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
         0xeb => { print_mnemonic("XCHG", &input[counter..counter + 1]); size = 1 },
         0xec => { print_mnemonic("CPE", &input[counter..counter + 3]); size = 3 },
         0xed => { print_mnemonic("*CALL", &input[counter..counter + 3]); size = 3 },
-        0xee => {
-            println!("XRI  #0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0xee => { print_mnemonic("XRI", &input[counter..counter + 2]); size = 2 },
         0xef => { print_mnemonic("RST  5", &input[counter..counter + 1]); size = 1 },
 
         // f0
