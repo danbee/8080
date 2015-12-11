@@ -58,37 +58,22 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
 
         // 20
         0x20 => { print_mnemonic("*NOP", &input[counter..counter + 1]); size = 1 },
-        0x21 => {
-            println!("LXI  H,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
-            size = 3;
-        },
-        0x22 => {
-            println!("SHLD ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
-            size = 3;
-        },
+        0x21 => { print_mnemonic("LXI  H", &input[counter..counter + 3]); size = 3 },
+        0x22 => { print_mnemonic("SHLD", &input[counter..counter + 3]); size = 3 },
         0x23 => { print_mnemonic("INX  H", &input[counter..counter + 1]); size = 1 },
         0x24 => { print_mnemonic("INR  H", &input[counter..counter + 1]); size = 1 },
         0x25 => { print_mnemonic("DCR  H", &input[counter..counter + 1]); size = 1 },
-        0x26 => {
-            println!("MVI  H,#0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0x26 => { print_mnemonic("MVI  H", &input[counter..counter + 2]); size = 2 },
         0x27 => { print_mnemonic("DDA", &input[counter..counter + 1]); size = 1 },
 
         // 28
         0x28 => { print_mnemonic("*NOP", &input[counter..counter + 1]); size = 1 },
         0x29 => { print_mnemonic("DAD  H", &input[counter..counter + 1]); size = 1 },
-        0x2a => {
-            println!("LHLD ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
-            size = 3;
-        },
+        0x2a => { print_mnemonic("LHLD", &input[counter..counter + 3]); size = 3 },
         0x2b => { print_mnemonic("DCX  H", &input[counter..counter + 1]); size = 1 },
         0x2c => { print_mnemonic("INR  L", &input[counter..counter + 1]); size = 1 },
         0x2d => { print_mnemonic("DCR  L", &input[counter..counter + 1]); size = 1 },
-        0x2e => {
-            println!("MVI  L,#0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0x2e => { print_mnemonic("MVI  L", &input[counter..counter + 2]); size = 2 },
         0x2f => { print_mnemonic("CMA", &input[counter..counter + 1]); size = 1 },
 
         // 30
