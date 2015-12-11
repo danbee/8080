@@ -1,5 +1,15 @@
 use std::io::{self, Read};
 
+fn print_mnemonic(mnemonic: &str, bytes: &[u8]) {
+    match bytes.len() {
+        1 => println!("{:02x}         {}", bytes[0], mnemonic),
+        2 => println!("{:02x} {:02x}      {:5} #0x{:02x}", bytes[0], bytes[1], mnemonic, bytes[1]),
+        3 => println!("{:02x} {:02x} {:02x}   {:5} ${:02x}{:02x}", bytes[0], bytes[1], bytes[2], mnemonic, bytes[2], bytes[1]),
+
+        _ => {},
+    }
+}
+
 fn opcode(input: &Vec<u8>, counter: usize) -> usize {
     let size: usize;
 
@@ -7,7 +17,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
 
     match opcode {
         // 00
-        0x00 => { println!("NOP"); size = 1 },
+        0x00 => { print_mnemonic("NOP", &input[counter..counter + 1]); size = 1 },
         0x01 => {
             println!("LXI  B,${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
@@ -16,10 +26,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
         0x03 => { println!("INX  B"); size = 1 },
         0x04 => { println!("INR  B"); size = 1 },
         0x05 => { println!("DCR  B"); size = 1 },
-        0x06 => {
-            println!("MVI  B,#0x{:02x}", input[counter + 1]);
-            size = 2;
-        },
+        0x06 => { print_mnemonic("MVI B,", &input[counter..counter + 2]); size = 2; },
         0x07 => { println!("RLC"); size = 1 },
 
         // 08
@@ -301,10 +308,7 @@ fn opcode(input: &Vec<u8>, counter: usize) -> usize {
             println!("JNZ  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
         },
-        0xc3 => {
-            println!("JMP  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
-            size = 3;
-        },
+        0xc3 => { print_mnemonic("JMP", &input[counter..counter + 3]); size = 3 },
         0xc4 => {
             println!("CNZ  ${:02x}{:02x}", input[counter + 2], input[counter + 1]);
             size = 3;
